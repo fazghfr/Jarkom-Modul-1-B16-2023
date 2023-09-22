@@ -163,3 +163,65 @@ Dari address tersebut, didapatkan angka 104 18 14 101. Dari hint yang ketiga, ra
 masukan string tersebut ke netcat untuk mendapatkan flag
 
 ![Alt text](images/image-24.png)
+
+
+**7. Berapa jumlah packet yang menuju IP 184.87.193.88?**
+
+**Kategori : Filtering**
+
+Untuk menyelesaikan soal ini, dapat dilakukan dengan filtering berikut
+
+![Alt text](images/image-25.png)
+
+Gunakan netcat untuk mendapatkan flag
+
+![Alt text](images/image-26.png)
+
+
+**8. Berikan kueri filter sehingga wireshark hanya mengambil semua protokol paket yang menuju port 80! (Jika terdapat lebih dari 1 port, maka urutkan sesuai dengan abjad)**
+
+**Kategori : Filtering**
+
+Untuk menyelesaikan soal ini, dapat dilakukan dengan menggunakan filter tcp.dstport == 80 || udp.dstport == 80 untuk mengambil semua protokol paket menuju port 80.
+
+![Alt text](images/image-27.png)
+
+Gunakan netcat untuk mendapatkan flag
+
+![Alt text](images/image-28.png)
+
+
+**9. Berikan kueri filter sehingga wireshark hanya mengambil paket yang berasal dari alamat 10.51.40.1 tetapi tidak menuju ke alamat 10.39.55.34!**
+
+**Kategori : Filtering**
+
+Untuk menyelesaikan soal ini, dapat dilakukan dengan menggunakan filter ip.src == 10.51.40.1 && ip.dst != 10.39.55.34
+
+![Alt text](images/image-29.png)
+
+Gunakan netcat untuk mendapatkan flag
+
+![Alt text](images/image-30.png)
+
+
+**10. Sebutkan kredensial yang benar ketika user mencoba login menggunakan Telnet**
+
+**Kategori : Stream**
+
+Untuk menyelesaikan soal ini, perlu dilakukan filtering berdasarkan protokol telnet, ditambah yang contains “Login” yang menandakan bahwa login dengan kredensial tersebut berhasil
+
+Filtering menggunakan telnet contains "Login"
+
+![Alt text](images/image-31.png)
+
+Follow packet tersebut dan dapatkan kredensialnya
+
+![Alt text](images/image-32.png)
+
+![Alt text](images/image-33.png)
+
+![Alt text](images/image-34.png)
+
+Gunakan netcat untuk mendapatkan flag
+
+![Alt text](images/image-35.png)
