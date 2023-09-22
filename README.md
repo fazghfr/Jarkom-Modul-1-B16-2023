@@ -25,15 +25,15 @@ Kemudian lihat detail packet tersebut, cari sequence number (raw) dan acknowledg
 Setelah mendapatkan dua data tersebut, kita perlu mencari sequence number (raw) dan acknowledge number (raw) untuk packet response dari packet sebelumnya. 
 untuk itu, perlu dicari paket response tersebut dengan melakukan follow stream pada packet tadi.
 
-![Alt text](image.png)
+![Alt text](images/image.png)
 
 Kemudian kita lihat detail packet tersebut dengan cara yang sama.
 
-![Alt text](image-1.png)
+![Alt text](images/image-1.png)
 
 Kemudian, untuk mendapatkan flag yang sesuai, gunakan netcat ke ip dan port yang disediakan pada portal praktikum
 
-![Alt text](image-2.png)
+![Alt text](images/image-2.png)
 
 **2. Sebutkan web server yang digunakan pada portal praktikum Jaringan Komputer!**
 
@@ -41,17 +41,17 @@ Kemudian, untuk mendapatkan flag yang sesuai, gunakan netcat ke ip dan port yang
 
 Diketahui portal praktikum jaringan komputer adalah ```http://10.21.78.111/``` atau ```10.21.78.111```. Maka perlu dilakukan filtering berdasarkan http, dengan syntax ```http contains "10.21.78.111"```.
 
-![Alt text](image-5.png)
+![Alt text](images/image-5.png)
 
 Kemudian, pilih packet paling atas, dan lakukan follow stream.
 
-![Alt text](image-6.png)
+![Alt text](images/image-6.png)
 
 Jelas tertulis web server yang digunakan adalah ```gunicorn```
 
 Gunakan netcat untuk mendapatkan flagnya.
 
-![Alt text](image-7.png)
+![Alt text](images/image-7.png)
 
 **3. Dapin sedang belajar analisis jaringan. Bantulah Dapin untuk mengerjakan soal berikut:**
 
@@ -65,23 +65,23 @@ terlebih dahulu
 
 ```(ip.src ==  239.255.255.250 || ip.dst ==   239.255.255.250) && (udp.port == 3702 || tcp.port == 3702)```
 
-![Alt text](image-8.png)
+![Alt text](images/image-8.png)
 
 Namun, diperhatikan semua protokol hasilnya adalah UDP, maka dapat diperpendek lagi menjadi 
 
 ```(ip.src ==  239.255.255.250 || ip.dst ==   239.255.255.250) && udp.port == 3702```
 
-![Alt text](image-9.png)
+![Alt text](images/image-9.png)
 
 Kemudian, pada interface wireshark, terdapat informasi bahwa paket yang ditunjukkan sebanyak 21.
 
-![Alt text](image-10.png)
+![Alt text](images/image-10.png)
 
 Kesimpulannya, jumlah paket sebanyak 21 dengan protokol layer transport adalah UDP.
 
 Gunakan kembali netcat untuk mendapatkan flag yang sesuai
 
-![Alt text](image-11.png)
+![Alt text](images/image-11.png)
 
 **4. Berapa nilai checksum yang didapat dari header pada paket nomor 130?**
 
@@ -90,11 +90,11 @@ Gunakan kembali netcat untuk mendapatkan flag yang sesuai
 Untuk menyelesaikan soal ini, perlu mencari paket nomor 130, dan lihat nilai checksum dari
 user data protocol.
 
-![Alt text](image-14.png)
+![Alt text](images/image-14.png)
 
 Kemudian gunakan netcat untuk mendapatkan flag yang sesuai
 
-![Alt text](image-15.png)
+![Alt text](images/image-15.png)
 
 **5. Elshe menemukan suatu file packet capture yang menarik. Bantulah Elshe untuk menganalisis file packet capture tersebut.**
 
@@ -107,21 +107,21 @@ Kemudian gunakan netcat untuk mendapatkan flag yang sesuai
 Soal ini agak berbeda, karena tidak diberikan ip dan port netcat untuk mendapatkan file. Probset memberikan dua file, yakni file network capture dan satu .zip.
 Namun, zip file yang tertera tidak dapat di-extract tanpa mengetahui suatu password. Maka, perlu dicari terlebih dahulu di dalam file network capture yang diberikan.
 
-![Alt text](image-16.png)
+![Alt text](images/image-16.png)
 
 Pada list tersebut terdapat satu packet yang mencurigakan, dimana info berisi : ```Pass : ....``` (paket nomor 14)
 
 Lakukan follow stream pada paket tersebut
 
-![Alt text](image-17.png)
+![Alt text](images/image-17.png)
 
 Ditemukan password yang di-encode menggunakan base64 ```NWltcGxlUGFzNXdvcmQ=``` Jika di decode, maka didapatkan ```5implePas5word```.
 
 Lakukan extraction dengan password yang didapatkan.
 
-![Alt text](image-18.png)
+![Alt text](images/image-18.png)
 
-![Alt text](image-19.png)
+![Alt text](images/image-19.png)
 
 Didapatkan ip netcat dan portnya. Jawab pertanyaan pada netcat tersebut
 * 60 paket
@@ -129,12 +129,14 @@ Didapatkan ip netcat dan portnya. Jawab pertanyaan pada netcat tersebut
 * non-private ip : 74.53.153
 
 Non private ip didapatkan dari
-![Alt text](image-20.png)
+
+![Alt text](images/image-20.png)
 
 hanya ip tersebut yang public.
 
 Maka akan didapatkan flag : 
-![Alt text](image-21.png)
+
+![Alt text](images/image-21.png)
 
 
 **6. Seorang anak bernama Udin Berteman dengan SlameT yang merupakan seorang penggemar film detektif. sebagai teman yang baik, Ia selalu mengajak slamet untuk bermain valoranT bersama. suatu malam, terjadi sebuah hal yang tak terdUga. ketika udin mereka membuka game tersebut, laptop udin menunjukkan sebuah field text dan Sebuah kode Invalid bertuliskan "server SOURCE ADDRESS 7812 is invalid". ketika ditelusuri di google, hasil pencarian hanya menampilkan a1 e5 u21. jiwa detektif slamet pun bergejolak. bantulah udin dan slamet untuk menemukan solusi kode error tersebut.**
@@ -149,15 +151,15 @@ Hints :
 
 Pertama, cari paket 7812 dan perhatikan source addressnya
 
-![Alt text](image-22.png)
+![Alt text](images/image-22.png)
 
 Didapatkan source address ```104.18.14.1```
 
 Dari address tersebut, didapatkan angka 104 18 14 101. Dari hint yang ketiga, range yang dipakai adalah 1 - 18. Maka bisa kita pecah menjadi 6 angka, yaitu 10, 4, 18, 14, 10, dan 1. Angka angka tersebut kita decrypt menggunakan a1z26, menjadi : 
 
-![Alt text](image-23.png)
+![Alt text](images/image-23.png)
 
 
 masukan string tersebut ke netcat untuk mendapatkan flag
 
-![Alt text](image-24.png)
+![Alt text](images/image-24.png)
